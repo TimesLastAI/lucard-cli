@@ -1,4 +1,4 @@
-# Paws UI and Event Control Flow State Diagram
+# Lucard UI and Event Control Flow State Diagram
 
 ## PlantUML State Diagram
 
@@ -25,7 +25,7 @@ state UIInitialized <<UIState>> {
 
 state SlashCommand <<Command>> {
     SlashCommand --> MessageCommand : /message or text
-    SlashCommand --> AgentCommand : /agent or /paws, /muse, /sage
+    SlashCommand --> AgentCommand : /agent or /lucard, /muse, /sage
     SlashCommand --> ProviderCommand : /provider or /login, /logout
     SlashCommand --> ModelCommand : /model
     SlashCommand --> ConversationCommand : /conversations, /new, /delete
@@ -43,8 +43,8 @@ state MessageProcessing <<Processing>> {
 }
 
 state APIProcessing <<API>> {
-    SendingToAPI --> PawsAppProcessing : PawsApp::chat()
-    PawsAppProcessing --> OrchestratorRunning : Orchestrator::run()
+    SendingToAPI --> LucardAppProcessing : LucardApp::chat()
+    LucardAppProcessing --> OrchestratorRunning : Orchestrator::run()
 }
 
 state OrchestratorLoop <<Processing>> {
@@ -194,7 +194,7 @@ ExitCommand --> [*] : Cleanup and exit
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                           Paws UI & Event Flow                        │
+│                           Lucard UI & Event Flow                        │
 └─────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
@@ -233,7 +233,7 @@ ExitCommand --> [*] : Cleanup and exit
            │
            ▼
     ┌──────────────────────────────────────────────────────────────────────┐
-    │                      PawsApp::chat()                          │
+    │                      LucardApp::chat()                          │
     └────────────────────────────┬─────────────────────────────────────┘
                              │
                              ▼
@@ -300,18 +300,18 @@ ExitCommand --> [*] : Cleanup and exit
 
 ## Key Components and Their Roles
 
-### UI Layer (`paws_main/src/ui.rs`)
+### UI Layer (`lucard_main/src/ui.rs`)
 - **UI**: Main orchestrator for user interface
 - **UIState**: Maintains conversation_id and working directory
 - **Console**: Handles user input via prompts
 - **MarkdownWriter**: Renders markdown content to terminal
 
-### Event Flow (`paws_domain/src/event.rs`)
+### Event Flow (`lucard_domain/src/event.rs`)
 - **Event**: Wraps user input (Text or Command)
 - **EventValue**: Enum for Text(UserPrompt) or Command(UserCommand)
 - **ChatRequest**: Contains Event + ConversationId
 
-### Response Stream (`paws_domain/src/chat_response.rs`)
+### Response Stream (`lucard_domain/src/chat_response.rs`)
 - **ChatResponse**: Streaming response enum
   - `TaskMessage`: Content (Title/PlainText/Markdown)
   - `TaskReasoning`: Agent reasoning output
@@ -320,21 +320,21 @@ ExitCommand --> [*] : Cleanup and exit
   - `RetryAttempt`: Retry with backoff
   - `Interrupt`: Interruption (max requests/tool failures)
 
-### Core Processing (`paws_app/src/app.rs`, `orch.rs`)
-- **PawsApp**: Main application orchestrator
+### Core Processing (`lucard_app/src/app.rs`, `orch.rs`)
+- **LucardApp**: Main application orchestrator
 - **Orchestrator**: Manages agent execution loop
 - **Context**: Conversation state with messages, tools, and configuration
 
 ### State Management
-- **Conversation** (`paws_domain/src/conversation.rs`): Persistent conversation state
-- **Context** (`paws_domain/src/context.rs`): Transient request/response state
+- **Conversation** (`lucard_domain/src/conversation.rs`): Persistent conversation state
+- **Context** (`lucard_domain/src/context.rs`): Transient request/response state
 - **ContextMessage**: Individual messages (Text, Tool, Image)
 
 ## Critical State Transitions
 
 1. **User Input → Command Parsing**: Raw input parsed to `SlashCommand`
 2. **Command → Event**: Commands converted to `Event` with conversation_id
-3. **Event → API**: `ChatRequest` sent to `PawsApp::chat()`
+3. **Event → API**: `ChatRequest` sent to `LucardApp::chat()`
 4. **API → Orchestrator**: Stream spawned with `Orchestrator::run()`
 5. **Orchestrator Loop**: Build context → Send to LLM → Process response → Repeat
 6. **Response Stream**: Multiple `ChatResponse` events streamed back to UI
@@ -347,21 +347,21 @@ ExitCommand --> [*] : Cleanup and exit
 
 ## File References
 
-- `crates/paws_main/src/ui.rs:89-102` - UI struct and initialization
-- `crates/paws_main/src/ui.rs:292-404` - Main run loop and command handling
-- `crates/paws_main/src/ui.rs:2327-2375` - Message handling and chat flow
-- `crates/paws_main/src/ui.rs:2423-2501` - Chat response handling
-- `crates/paws_main/src/state.rs:8-19` - UIState definition
-- `crates/paws_domain/src/event.rs:44-61` - Event and EventValue types
-- `crates/paws_domain/src/chat_request.rs:6-17` - ChatRequest structure
-- `crates/paws_domain/src/chat_response.rs:47-56` - ChatResponse enum
-- `crates/paws_app/src/app.rs:31-45` - PawsApp structure
-- `crates/paws_app/src/app.rs:49-180` - Main chat orchestration
-- `crates/paws_app/src/orch.rs:18-51` - Orchestrator structure
-- `crates/paws_app/src/orch.rs:190-394` - Main execution loop
-- `crates/paws_domain/src/conversation.rs:41-49` - Conversation structure
-- `crates/paws_domain/src/context.rs:358-385` - Context structure
-- `crates/paws_domain/src/context.rs:28-34` - ContextMessage enum
+- `crates/lucard_main/src/ui.rs:89-102` - UI struct and initialization
+- `crates/lucard_main/src/ui.rs:292-404` - Main run loop and command handling
+- `crates/lucard_main/src/ui.rs:2327-2375` - Message handling and chat flow
+- `crates/lucard_main/src/ui.rs:2423-2501` - Chat response handling
+- `crates/lucard_main/src/state.rs:8-19` - UIState definition
+- `crates/lucard_domain/src/event.rs:44-61` - Event and EventValue types
+- `crates/lucard_domain/src/chat_request.rs:6-17` - ChatRequest structure
+- `crates/lucard_domain/src/chat_response.rs:47-56` - ChatResponse enum
+- `crates/lucard_app/src/app.rs:31-45` - LucardApp structure
+- `crates/lucard_app/src/app.rs:49-180` - Main chat orchestration
+- `crates/lucard_app/src/orch.rs:18-51` - Orchestrator structure
+- `crates/lucard_app/src/orch.rs:190-394` - Main execution loop
+- `crates/lucard_domain/src/conversation.rs:41-49` - Conversation structure
+- `crates/lucard_domain/src/context.rs:358-385` - Context structure
+- `crates/lucard_domain/src/context.rs:28-34` - ContextMessage enum
 
 ## State Data Structures
 

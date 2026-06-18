@@ -10,39 +10,39 @@
 # These functions are exposed for manual integration into your prompts
 #
 # Environment Variables (direct access):
-# - $_PAWS_ACTIVE_AGENT     : Current agent ID (e.g., "paws", "sage")
-# - $_PAWS_CONVERSATION_ID  : Current conversation UUID (empty if no conversation)
-# - $PAWS_PROMPT_ICON       : Icon displayed before agent name (default: 󰚩 U+F06A9)
-# - $_PAWS_PROVIDER         : Current provider name (e.g., "openai", "anthropic")
-# - $_PAWS_ACTIVE_MODEL     : Current model name (e.g., "claude-3-5-sonnet")
-# - $_PAWS_MESSAGE_COUNT    : Message count for current conversation (human-readable, e.g., "42k", "1.2M")
+# - $_LUCARD_ACTIVE_AGENT     : Current agent ID (e.g., "lucard", "sage")
+# - $_LUCARD_CONVERSATION_ID  : Current conversation UUID (empty if no conversation)
+# - $LUCARD_PROMPT_ICON       : Icon displayed before agent name (default: 󰚩 U+F06A9)
+# - $_LUCARD_PROVIDER         : Current provider name (e.g., "openai", "anthropic")
+# - $_LUCARD_ACTIVE_MODEL     : Current model name (e.g., "claude-3-5-sonnet")
+# - $_LUCARD_MESSAGE_COUNT    : Message count for current conversation (human-readable, e.g., "42k", "1.2M")
 #
 # Usage Examples:
 #
 # 1. Simple ZSH integration:
-#    PROMPT='$(prompt_paws_agent)%F{blue}%~%f %# '
-#    RPROMPT='$(prompt_paws_model)'
+#    PROMPT='$(prompt_lucard_agent)%F{blue}%~%f %# '
+#    RPROMPT='$(prompt_lucard_model)'
 #
 # 2. Custom ZSH (using environment variables):
-#    PROMPT='%B${(U)_PAWS_ACTIVE_AGENT}%b %F{blue}%~%f %# '
-#    RPROMPT='%F{cyan}${_PAWS_ACTIVE_MODEL}%f %F{green}${_PAWS_MESSAGE_COUNT}%f'
+#    PROMPT='%B${(U)_LUCARD_ACTIVE_AGENT}%b %F{blue}%~%f %# '
+#    RPROMPT='%F{cyan}${_LUCARD_ACTIVE_MODEL}%f %F{green}${_LUCARD_MESSAGE_COUNT}%f'
 #
 # 3. Powerlevel10k (add to your .p10k.zsh):
-#    function prompt_paws_agent() {
-#      local agent="${(U)_PAWS_ACTIVE_AGENT}"
+#    function prompt_lucard_agent() {
+#      local agent="${(U)_LUCARD_ACTIVE_AGENT}"
 #      [[ -n "$agent" ]] && p10k segment -t "$agent"
 #    }
-#    # Then add 'paws_agent' to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
+#    # Then add 'lucard_agent' to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
 #
 # 4. Starship (add to ~/.config/starship.toml):
-#    [custom.paws_agent]
-#    command = "echo -n $_PAWS_ACTIVE_AGENT | tr '[:lower:]' '[:upper:]'"
-#    when = '[ -n "$_PAWS_ACTIVE_AGENT" ]'
+#    [custom.lucard_agent]
+#    command = "echo -n $_LUCARD_ACTIVE_AGENT | tr '[:lower:]' '[:upper:]'"
+#    when = '[ -n "$_LUCARD_ACTIVE_AGENT" ]'
 #    format = "[$output]($style) "
 #    style = "bold white"
 #
 # 5. Show token count in your prompt:
-#    RPROMPT='$(prompt_paws_model) [$(prompt_paws_message_count)]'
+#    RPROMPT='$(prompt_lucard_model) [$(prompt_lucard_message_count)]'
 #
 # 6. Powerlevel10k integration:
 
@@ -50,9 +50,9 @@
 # INTERNAL HELPERS
 #################################################################################
 
-# Returns the paws command to use (private helper)
-function _prompt_paws_cmd() {
-    echo "${_PAWS_BIN:-${PAWS_BIN:-paws}}"
+# Returns the lucard command to use (private helper)
+function _prompt_lucard_cmd() {
+    echo "${_LUCARD_BIN:-${LUCARD_BIN:-lucard}}"
 }
 
 
@@ -61,7 +61,7 @@ function _prompt_paws_cmd() {
 #
 # Args:
 #   $1 - styled content to display
-function _prompt_paws_p9k_segment() {
+function _prompt_lucard_p9k_segment() {
     local styled="$1"
     # Strip leading and trailing whitespace
     styled="${styled#"${styled%%[![:space:]]*}"}"
@@ -86,17 +86,17 @@ function _prompt_paws_p9k_segment() {
 # Returns unstyled left prompt content (agent name with icon)
 # Returns the agent name in uppercase with an icon prefix without any styling
 #
-# Example output: "󰚩 PAWS" or "" (empty if no agent)
+# Example output: "󰚩 LUCARD" or "" (empty if no agent)
 #
 # Example:
-#   agent=$(prompt_paws_agent_unstyled)
+#   agent=$(prompt_lucard_agent_unstyled)
 #   PROMPT="%F{yellow}${agent} %f%~ %# "
-function prompt_paws_agent_unstyled() {
-    if [[ -n "$_PAWS_ACTIVE_AGENT" ]]; then
-        if [[ -n "$PAWS_PROMPT_ICON" ]]; then
-            echo "${PAWS_PROMPT_ICON} ${(U)_PAWS_ACTIVE_AGENT}"
+function prompt_lucard_agent_unstyled() {
+    if [[ -n "$_LUCARD_ACTIVE_AGENT" ]]; then
+        if [[ -n "$LUCARD_PROMPT_ICON" ]]; then
+            echo "${LUCARD_PROMPT_ICON} ${(U)_LUCARD_ACTIVE_AGENT}"
         else
-            echo "${(U)_PAWS_ACTIVE_AGENT}"
+            echo "${(U)_LUCARD_ACTIVE_AGENT}"
         fi
     fi
 }
@@ -107,10 +107,10 @@ function prompt_paws_agent_unstyled() {
 # Example output: "claude-3-5-sonnet" or "" (empty if no model)
 #
 # Example:
-#   model=$(prompt_paws_model_unstyled)
+#   model=$(prompt_lucard_model_unstyled)
 #   RPROMPT="%F{blue}${model}%f"
-function prompt_paws_model_unstyled() {
-    local model_output=$($(_prompt_paws_cmd) config get model 2>/dev/null)
+function prompt_lucard_model_unstyled() {
+    local model_output=$($(_prompt_lucard_cmd) config get model 2>/dev/null)
     
     if [[ -n "$model_output" ]]; then
         echo "${model_output}"
@@ -123,10 +123,10 @@ function prompt_paws_model_unstyled() {
 # Example output: "openai" or "" (empty if no provider)
 #
 # Example:
-#   provider=$(prompt_paws_provider_unstyled)
+#   provider=$(prompt_lucard_provider_unstyled)
 #   RPROMPT="%F{blue}${provider}%f"
-function prompt_paws_provider_unstyled() {
-    local provider_output=$($(_prompt_paws_cmd) config get provider --porcelain 2>/dev/null)
+function prompt_lucard_provider_unstyled() {
+    local provider_output=$($(_prompt_lucard_cmd) config get provider --porcelain 2>/dev/null)
     
     if [[ -n "$provider_output" ]]; then
         echo "${provider_output}"
@@ -142,11 +142,11 @@ function prompt_paws_provider_unstyled() {
 # - Bold white when conversation is active
 #
 # Example:
-#   PROMPT='$(prompt_paws_agent)%F{blue}%~%f %# '
-function prompt_paws_agent() {
-    local content=$(prompt_paws_agent_unstyled)
+#   PROMPT='$(prompt_lucard_agent)%F{blue}%~%f %# '
+function prompt_lucard_agent() {
+    local content=$(prompt_lucard_agent_unstyled)
     if [[ -n "$content" ]]; then
-        if [[ -n "$_PAWS_CONVERSATION_ID" ]]; then
+        if [[ -n "$_LUCARD_CONVERSATION_ID" ]]; then
             # Active: bold white
             echo "%B%F{white}${content}%f%b"
         else
@@ -163,9 +163,9 @@ function prompt_paws_agent() {
 # Color: Cyan (consistent, not context-dependent)
 #
 # Example:
-#   RPROMPT='$(prompt_paws_model)'
-function prompt_paws_model() {
-    local content=$(prompt_paws_model_unstyled)
+#   RPROMPT='$(prompt_lucard_model)'
+function prompt_lucard_model() {
+    local content=$(prompt_lucard_model_unstyled)
     if [[ -n "$content" ]]; then
         # Always cyan regardless of conversation state
         echo "%F{cyan}${content}%f"
@@ -179,9 +179,9 @@ function prompt_paws_model() {
 # Color: Cyan (consistent with model)
 #
 # Example:
-#   RPROMPT='$(prompt_paws_provider)'
-function prompt_paws_provider() {
-    local content=$(prompt_paws_provider_unstyled)
+#   RPROMPT='$(prompt_lucard_provider)'
+function prompt_lucard_provider() {
+    local content=$(prompt_lucard_provider_unstyled)
     if [[ -n "$content" ]]; then
         # Always cyan regardless of conversation state
         echo "%F{cyan}${content}%f"
@@ -194,11 +194,11 @@ function prompt_paws_provider() {
 # Example output: "42k" or "0" (when no conversation)
 #
 # Example:
-#   count=$(prompt_paws_message_count_unstyled)
+#   count=$(prompt_lucard_message_count_unstyled)
 #   RPROMPT="%F{blue}Tokens: ${count}%f"
-function prompt_paws_message_count_unstyled() {
-    if [[ -n "$_PAWS_CONVERSATION_ID" ]]; then
-        local stats_output=$($(_prompt_paws_cmd) conversation stats "$_PAWS_CONVERSATION_ID" --porcelain 2>/dev/null)
+function prompt_lucard_message_count_unstyled() {
+    if [[ -n "$_LUCARD_CONVERSATION_ID" ]]; then
+        local stats_output=$($(_prompt_lucard_cmd) conversation stats "$_LUCARD_CONVERSATION_ID" --porcelain 2>/dev/null)
         
         if [[ -n "$stats_output" ]]; then
             # Extract total_tokens from porcelain output (format: "token  total_tokens      36000")
@@ -237,9 +237,9 @@ function prompt_paws_message_count_unstyled() {
 # Example output: "42k" (in green) or "0" (in dark grey when no conversation)
 #
 # Example:
-#   RPROMPT='$(prompt_paws_model) [$(prompt_paws_message_count)]'
-function prompt_paws_message_count() {
-    local content=$(prompt_paws_message_count_unstyled)    
+#   RPROMPT='$(prompt_lucard_model) [$(prompt_lucard_message_count)]'
+function prompt_lucard_message_count() {
+    local content=$(prompt_lucard_message_count_unstyled)    
     # Active conversation: green
     echo "%F{green}${content}%f"    
 }
@@ -253,49 +253,49 @@ function prompt_paws_message_count() {
 # These functions are ready-to-use with Powerlevel9k and Powerlevel10k
 #
 # To use, add these segment names to your prompt elements:
-# - 'paws_agent' for the left prompt (agent name)
-# - 'paws_model' for the right prompt (model name)
-# - 'paws_provider' for the right prompt (provider name)
-# - 'paws_message_count' for the right prompt (token count)
+# - 'lucard_agent' for the left prompt (agent name)
+# - 'lucard_model' for the right prompt (model name)
+# - 'lucard_provider' for the right prompt (provider name)
+# - 'lucard_message_count' for the right prompt (token count)
 #
 # Example in your .p10k.zsh or .zshrc:
-#   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(... paws_agent ...)
-#   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(... paws_model paws_provider paws_message_count ...)
+#   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(... lucard_agent ...)
+#   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(... lucard_model lucard_provider lucard_message_count ...)
 #
 # Or for Powerlevel9k:
-#   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ... paws_agent dir vcs)
-#   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status paws_model paws_provider paws_message_count time)
+#   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ... lucard_agent dir vcs)
+#   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status lucard_model lucard_provider lucard_message_count time)
 
 # Powerlevel segment for agent name (left prompt)
 # Applies consistent styling across P10k and P9k
 #
-# Usage: Add 'paws_agent' to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
-function prompt_paws_agent_p9k() {
-    _prompt_paws_p9k_segment "$(prompt_paws_agent)"
+# Usage: Add 'lucard_agent' to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
+function prompt_lucard_agent_p9k() {
+    _prompt_lucard_p9k_segment "$(prompt_lucard_agent)"
 }
 
 # Powerlevel segment for model name (right prompt)
 # Applies consistent styling across P10k and P9k
 #
-# Usage: Add 'paws_model' to POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS
-function prompt_paws_model_p9k() {
-    _prompt_paws_p9k_segment "$(prompt_paws_model)"
+# Usage: Add 'lucard_model' to POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS
+function prompt_lucard_model_p9k() {
+    _prompt_lucard_p9k_segment "$(prompt_lucard_model)"
 }
 
 # Powerlevel segment for provider name (right prompt)
 # Applies consistent styling across P10k and P9k
 #
-# Usage: Add 'paws_provider' to POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS
-function prompt_paws_provider_p9k() {
-    _prompt_paws_p9k_segment "$(prompt_paws_provider)"
+# Usage: Add 'lucard_provider' to POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS
+function prompt_lucard_provider_p9k() {
+    _prompt_lucard_p9k_segment "$(prompt_lucard_provider)"
 }
 
 # Powerlevel segment for token count (right prompt)
 # Applies consistent styling across P10k and P9k
 #
-# Usage: Add 'paws_message_count' to POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS
-function prompt_paws_message_count_p9k() {
-    _prompt_paws_p9k_segment "$(prompt_paws_message_count)"
+# Usage: Add 'lucard_message_count' to POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS
+function prompt_lucard_message_count_p9k() {
+    _prompt_lucard_p9k_segment "$(prompt_lucard_message_count)"
 }
 
 # End of Powerlevel Integration
@@ -303,9 +303,9 @@ function prompt_paws_message_count_p9k() {
 
 
 
-update_paws_variables() {
-    export _PAWS_ACTIVE_MODEL=$($_PAWS_BIN config get model)
-    export _PAWS_CONVERSATION_MESSAGE_COUNT=$(prompt_paws_message_count_unstyled)
+update_lucard_variables() {
+    export _LUCARD_ACTIVE_MODEL=$($_LUCARD_BIN config get model)
+    export _LUCARD_CONVERSATION_MESSAGE_COUNT=$(prompt_lucard_message_count_unstyled)
 }
 
-precmd_functions+=(update_paws_variables)
+precmd_functions+=(update_lucard_variables)

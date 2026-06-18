@@ -7,11 +7,11 @@
 
 ## Summary
 
-This migration syncs paws with the latest changes from upstream forge. The commits are categorized based on their relevance to paws.
+This migration syncs lucard with the latest changes from upstream forge. The commits are categorized based on their relevance to lucard.
 
 ## Commit Categories
 
-### ✅ USEFUL - Should be applied to paws
+### ✅ USEFUL - Should be applied to lucard
 
 #### Core Tool Improvements
 1. `c52e328eb` - feat(patch): add fuzzy search support with gRPC integration and range conversion (#2228)
@@ -125,9 +125,9 @@ This migration syncs paws with the latest changes from upstream forge. The commi
 
 ---
 
-### ❌ NOT USEFUL - Should be skipped for paws
+### ❌ NOT USEFUL - Should be skipped for lucard
 
-#### Zsh Plugin Specific (paws doesn't use zsh plugin)
+#### Zsh Plugin Specific (lucard doesn't use zsh plugin)
 1. `39ed78f34` - fix(zsh): remove unnecessary command ready log message (#2227)
 2. `a450fe9c3` - fix(zsh): remove export from plugin and theme load variables (#2206)
 3. `7f8758a22` - fix(zsh): prevent environment variable pollution by removing export from plugin and theme markers (#2205)
@@ -151,10 +151,10 @@ This migration syncs paws with the latest changes from upstream forge. The commi
 #### OAuth / Forge-Specific Authentication
 16. `0050dc6a3` - fix(claude): add OAuth token support for authentication (#2235)
 
-#### VSCode Extension (paws doesn't use VSCode extension)
+#### VSCode Extension (lucard doesn't use VSCode extension)
 17. `a062dfa91` - feat(cli): add install command for vscode extension (#2224)
 
-#### Workspace Sync (paws doesn't use workspace sync feature)
+#### Workspace Sync (lucard doesn't use workspace sync feature)
 18. `c7bb6a252` - feat(sync): track and display failed file count in sync progress (#2245)
 
 ---
@@ -169,7 +169,7 @@ This migration syncs paws with the latest changes from upstream forge. The commi
 
 3. **Workspace vs Codebase**: There's been a refactoring to rename "codebase" to "workspace" in types and services. This is a breaking change that needs careful handling.
 
-4. **Patch Tool Improvements**: Several commits improve the patch tool with fuzzy search, gRPC integration, and better validation. These are highly valuable for paws.
+4. **Patch Tool Improvements**: Several commits improve the patch tool with fuzzy search, gRPC integration, and better validation. These are highly valuable for lucard.
 
 5. **Tool Descriptions**: Tool descriptions have been moved to external markdown files and now support template rendering. This improves maintainability.
 
@@ -177,17 +177,17 @@ This migration syncs paws with the latest changes from upstream forge. The commi
 
 7. **Permissions**: Timeouts have been removed from permissions, and permission checks are now only enabled in restricted mode.
 
-8. **MCP Support**: MCP tool support has been added to summary extraction and transformers. Need to evaluate if paws uses MCP.
+8. **MCP Support**: MCP tool support has been added to summary extraction and transformers. Need to evaluate if lucard uses MCP.
 
-9. **Metrics**: Files accessed are now tracked separately from file operations. This may or may not be relevant for paws.
+9. **Metrics**: Files accessed are now tracked separately from file operations. This may or may not be relevant for lucard.
 
 ### Potential Conflicts
 
-1. **Workspace Sync Commits**: Many commits reference workspace sync functionality which paws doesn't use. These should be skipped.
+1. **Workspace Sync Commits**: Many commits reference workspace sync functionality which lucard doesn't use. These should be skipped.
 
-2. **Zsh Plugin**: All zsh-specific commits should be skipped as paws doesn't use the zsh plugin.
+2. **Zsh Plugin**: All zsh-specific commits should be skipped as lucard doesn't use the zsh plugin.
 
-3. **Forge Provider**: The forge-provider specific commits should be skipped as paws uses a different authentication mechanism.
+3. **Forge Provider**: The forge-provider specific commits should be skipped as lucard uses a different authentication mechanism.
 
 4. **Co-Author Trailers**: The git commits about co-authored-by trailers are forge-specific and should be skipped.
 
@@ -209,7 +209,7 @@ After applying these changes, the following areas should be thoroughly tested:
 1. Create cherry-pick list of useful commits in chronological order
 2. Apply commits in batches, testing after each batch
 3. Handle merge conflicts carefully, preferring upstream implementation where applicable
-4. Update any paws-specific code that conflicts with upstream changes
+4. Update any lucard-specific code that conflicts with upstream changes
 5. Run full test suite after all commits are applied
 6. Document any breaking changes or behavioral changes
 
@@ -217,4 +217,4 @@ After applying these changes, the following areas should be thoroughly tested:
 
 - Upstream branch: `up/main`
 - Base commit: `8f3461c9f32f9b4480063b92784600eb05b21e26`
-- Sync documentation: `docs/paws_sync.md`
+- Sync documentation: `docs/lucard_sync.md`

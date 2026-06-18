@@ -113,12 +113,12 @@ dashmap = "7.0.0-rc2"
 fake = { version = "4.4.0", features = ["derive"] }
 
 # Internal crates
-paws_api = { path = "crates/paws_api" }
-paws_app = { path = "crates/paws_app" }
-paws_common = { path = "crates/paws_common" }
-paws_domain = { path = "crates/paws_domain" }
-paws_infra = { path = "crates/paws_infra" }
-paws_repo = { path = "crates/paws_repo" }
-paws_services = { path = "crates/paws_services" }
-paws_tool_macros = { path = "crates/paws_tool_macros" }
+lucard_api = { path = "crates/lucard_api" }
+lucard_app = { path = "crates/lucard_app" }
+lucard_common = { path = "crates/lucard_common" }
+lucard_domain = { path = "crates/lucard_domain" }
+lucard_infra = { path = "crates/lucard_infra" }
+lucard_repo = { path = "crates/lucard_repo" }
+lucard_services = { path = "crates/lucard_services" }
+lucard_tool_macros = { path = "crates/lucard_tool_macros" }
 

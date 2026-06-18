@@ -2455,6 +2455,328 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "112b39cec0b298b6c1999fee3e31427f74f676e4cb9879ed1a121b43661a4154"
 
 [[package]]
+name = "lucard_api"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "futures",
+ "lucard_app",
+ "lucard_common",
+ "lucard_domain",
+ "lucard_infra",
+ "lucard_repo",
+ "lucard_services",
+ "serde_json",
+ "tokio",
+ "url",
+]
+
+[[package]]
+name = "lucard_app"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-recursion",
+ "async-trait",
+ "backon",
+ "bytes",
+ "chrono",
+ "console 0.16.3",
+ "convert_case 0.11.0",
+ "derive_more",
+ "derive_setters",
+ "fake",
+ "futures",
+ "glob",
+ "handlebars",
+ "insta",
+ "lazy_static",
+ "lucard_common",
+ "lucard_domain",
+ "merge",
+ "pretty_assertions",
+ "regex",
+ "reqwest",
+ "reqwest-eventsource",
+ "rust-embed",
+ "schemars",
+ "serde",
+ "serde_json",
+ "sha2",
+ "strum 0.28.0",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tokio",
+ "tokio-stream",
+ "tracing",
+ "url",
+]
+
+[[package]]
+name = "lucard_ci"
+version = "0.1.0"
+dependencies = [
+ "derive_setters",
+ "gh-workflow",
+ "indexmap",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "lucard_common"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "console 0.16.3",
+ "crossterm",
+ "derive_setters",
+ "dialoguer",
+ "futures",
+ "html-escape",
+ "ignore",
+ "indicatif",
+ "infer",
+ "insta",
+ "lazy-regex",
+ "pretty_assertions",
+ "rand 0.10.0",
+ "regex",
+ "schemars",
+ "serde",
+ "serde_json",
+ "similar",
+ "strip-ansi-escapes",
+ "syntect",
+ "tempfile",
+ "termimad",
+ "thiserror 2.0.18",
+ "tokio",
+]
+
+[[package]]
+name = "lucard_domain"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "base64 0.22.1",
+ "chrono",
+ "convert_case 0.11.0",
+ "derive-getters",
+ "derive_more",
+ "derive_setters",
+ "eserde",
+ "fake",
+ "fnv_rs",
+ "glob",
+ "insta",
+ "is_ci",
+ "lazy_static",
+ "lucard_common",
+ "lucard_tool_macros",
+ "merge",
+ "nom 8.0.0",
+ "pretty_assertions",
+ "regex",
+ "schemars",
+ "serde",
+ "serde_json",
+ "serde_yml",
+ "strum 0.28.0",
+ "strum_macros 0.28.0",
+ "thiserror 2.0.18",
+ "tokio",
+ "tokio-stream",
+ "tracing",
+ "url",
+ "uuid",
+]
+
+[[package]]
+name = "lucard_infra"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "backon",
+ "bytes",
+ "cacache",
+ "chrono",
+ "dirs",
+ "dotenvy",
+ "fake",
+ "futures",
+ "glob",
+ "http 1.4.0",
+ "libsqlite3-sys",
+ "lucard_app",
+ "lucard_common",
+ "lucard_domain",
+ "oauth2",
+ "pretty_assertions",
+ "reqwest",
+ "reqwest-eventsource",
+ "rmcp",
+ "schemars",
+ "serde",
+ "serde_json",
+ "serde_urlencoded",
+ "serial_test",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
+ "url",
+]
+
+[[package]]
+name = "lucard_main"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arboard",
+ "async-recursion",
+ "atty",
+ "base64 0.22.1",
+ "chrono",
+ "clap",
+ "colored",
+ "console 0.16.3",
+ "convert_case 0.11.0",
+ "crossterm",
+ "derive_setters",
+ "fake",
+ "futures",
+ "humantime",
+ "indexmap",
+ "insta",
+ "lazy_static",
+ "lucard_api",
+ "lucard_app",
+ "lucard_common",
+ "lucard_domain",
+ "lucard_services",
+ "merge",
+ "nu-ansi-term",
+ "nucleo",
+ "num-format",
+ "open",
+ "pretty_assertions",
+ "reedline",
+ "rust-embed",
+ "serde",
+ "serde_json",
+ "serial_test",
+ "strip-ansi-escapes",
+ "strum 0.28.0",
+ "strum_macros 0.28.0",
+ "tempfile",
+ "tokio",
+ "tokio-stream",
+ "tracing",
+ "update-informer",
+ "url",
+]
+
+[[package]]
+name = "lucard_repo"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "bytes",
+ "chrono",
+ "derive_more",
+ "derive_setters",
+ "diesel",
+ "diesel_migrations",
+ "fake",
+ "futures",
+ "gray_matter",
+ "handlebars",
+ "lucard_app",
+ "lucard_common",
+ "lucard_domain",
+ "lucard_infra",
+ "lucard_services",
+ "merge",
+ "pretty_assertions",
+ "reqwest",
+ "reqwest-eventsource",
+ "serde",
+ "serde_json",
+ "serial_test",
+ "strum 0.28.0",
+ "tempfile",
+ "tokio",
+ "tracing",
+ "url",
+]
+
+[[package]]
+name = "lucard_services"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-recursion",
+ "async-trait",
+ "aws-sdk-bedrockruntime",
+ "aws-smithy-async",
+ "aws-smithy-types",
+ "base64 0.22.1",
+ "bytes",
+ "chrono",
+ "dashmap",
+ "derive_setters",
+ "fake",
+ "futures",
+ "glob",
+ "gray_matter",
+ "grep-regex",
+ "grep-searcher",
+ "handlebars",
+ "html2md",
+ "infer",
+ "insta",
+ "lazy_static",
+ "lucard_app",
+ "lucard_common",
+ "lucard_domain",
+ "merge",
+ "mockito",
+ "pretty_assertions",
+ "regex",
+ "reqwest",
+ "reqwest-eventsource",
+ "schemars",
+ "serde",
+ "serde_json",
+ "serde_yml",
+ "strip-ansi-escapes",
+ "strum 0.28.0",
+ "strum_macros 0.28.0",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tokio",
+ "tokio-stream",
+ "tracing",
+ "tracing-appender",
+ "tracing-subscriber",
+ "url",
+]
+
+[[package]]
+name = "lucard_tool_macros"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "mac"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2960,328 +3282,6 @@ name = "pathdiff"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "df94ce210e5bc13cb6651479fa48d14f601d9858cfe0467f43ae157023b938d3"
-
-[[package]]
-name = "paws_api"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "async-trait",
- "futures",
- "paws_app",
- "paws_common",
- "paws_domain",
- "paws_infra",
- "paws_repo",
- "paws_services",
- "serde_json",
- "tokio",
- "url",
-]
-
-[[package]]
-name = "paws_app"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "async-recursion",
- "async-trait",
- "backon",
- "bytes",
- "chrono",
- "console 0.16.3",
- "convert_case 0.11.0",
- "derive_more",
- "derive_setters",
- "fake",
- "futures",
- "glob",
- "handlebars",
- "insta",
- "lazy_static",
- "merge",
- "paws_common",
- "paws_domain",
- "pretty_assertions",
- "regex",
- "reqwest",
- "reqwest-eventsource",
- "rust-embed",
- "schemars",
- "serde",
- "serde_json",
- "sha2",
- "strum 0.28.0",
- "tempfile",
- "thiserror 2.0.18",
- "tokio",
- "tokio-stream",
- "tracing",
- "url",
-]
-
-[[package]]
-name = "paws_ci"
-version = "0.1.0"
-dependencies = [
- "derive_setters",
- "gh-workflow",
- "indexmap",
- "serde",
- "serde_json",
-]
-
-[[package]]
-name = "paws_common"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "console 0.16.3",
- "crossterm",
- "derive_setters",
- "dialoguer",
- "futures",
- "html-escape",
- "ignore",
- "indicatif",
- "infer",
- "insta",
- "lazy-regex",
- "pretty_assertions",
- "rand 0.10.0",
- "regex",
- "schemars",
- "serde",
- "serde_json",
- "similar",
- "strip-ansi-escapes",
- "syntect",
- "tempfile",
- "termimad",
- "thiserror 2.0.18",
- "tokio",
-]
-
-[[package]]
-name = "paws_domain"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "async-trait",
- "base64 0.22.1",
- "chrono",
- "convert_case 0.11.0",
- "derive-getters",
- "derive_more",
- "derive_setters",
- "eserde",
- "fake",
- "fnv_rs",
- "glob",
- "insta",
- "is_ci",
- "lazy_static",
- "merge",
- "nom 8.0.0",
- "paws_common",
- "paws_tool_macros",
- "pretty_assertions",
- "regex",
- "schemars",
- "serde",
- "serde_json",
- "serde_yml",
- "strum 0.28.0",
- "strum_macros 0.28.0",
- "thiserror 2.0.18",
- "tokio",
- "tokio-stream",
- "tracing",
- "url",
- "uuid",
-]
-
-[[package]]
-name = "paws_infra"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "async-trait",
- "backon",
- "bytes",
- "cacache",
- "chrono",
- "dirs",
- "dotenvy",
- "fake",
- "futures",
- "glob",
- "http 1.4.0",
- "libsqlite3-sys",
- "oauth2",
- "paws_app",
- "paws_common",
- "paws_domain",
- "pretty_assertions",
- "reqwest",
- "reqwest-eventsource",
- "rmcp",
- "schemars",
- "serde",
- "serde_json",
- "serde_urlencoded",
- "serial_test",
- "tempfile",
- "thiserror 2.0.18",
- "tokio",
- "tracing",
- "url",
-]
-
-[[package]]
-name = "paws_main"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "arboard",
- "async-recursion",
- "atty",
- "base64 0.22.1",
- "chrono",
- "clap",
- "colored",
- "console 0.16.3",
- "convert_case 0.11.0",
- "crossterm",
- "derive_setters",
- "fake",
- "futures",
- "humantime",
- "indexmap",
- "insta",
- "lazy_static",
- "merge",
- "nu-ansi-term",
- "nucleo",
- "num-format",
- "open",
- "paws_api",
- "paws_app",
- "paws_common",
- "paws_domain",
- "paws_services",
- "pretty_assertions",
- "reedline",
- "rust-embed",
- "serde",
- "serde_json",
- "serial_test",
- "strip-ansi-escapes",
- "strum 0.28.0",
- "strum_macros 0.28.0",
- "tempfile",
- "tokio",
- "tokio-stream",
- "tracing",
- "update-informer",
- "url",
-]
-
-[[package]]
-name = "paws_repo"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "async-trait",
- "bytes",
- "chrono",
- "derive_more",
- "derive_setters",
- "diesel",
- "diesel_migrations",
- "fake",
- "futures",
- "gray_matter",
- "handlebars",
- "merge",
- "paws_app",
- "paws_common",
- "paws_domain",
- "paws_infra",
- "paws_services",
- "pretty_assertions",
- "reqwest",
- "reqwest-eventsource",
- "serde",
- "serde_json",
- "serial_test",
- "strum 0.28.0",
- "tempfile",
- "tokio",
- "tracing",
- "url",
-]
-
-[[package]]
-name = "paws_services"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "async-recursion",
- "async-trait",
- "aws-sdk-bedrockruntime",
- "aws-smithy-async",
- "aws-smithy-types",
- "base64 0.22.1",
- "bytes",
- "chrono",
- "dashmap",
- "derive_setters",
- "fake",
- "futures",
- "glob",
- "gray_matter",
- "grep-regex",
- "grep-searcher",
- "handlebars",
- "html2md",
- "infer",
- "insta",
- "lazy_static",
- "merge",
- "mockito",
- "paws_app",
- "paws_common",
- "paws_domain",
- "pretty_assertions",
- "regex",
- "reqwest",
- "reqwest-eventsource",
- "schemars",
- "serde",
- "serde_json",
- "serde_yml",
- "strip-ansi-escapes",
- "strum 0.28.0",
- "strum_macros 0.28.0",
- "tempfile",
- "thiserror 2.0.18",
- "tokio",
- "tokio-stream",
- "tracing",
- "tracing-appender",
- "tracing-subscriber",
- "url",
-]
-
-[[package]]
-name = "paws_tool_macros"
-version = "0.1.0"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
-]
 
 [[package]]
 name = "percent-encoding"

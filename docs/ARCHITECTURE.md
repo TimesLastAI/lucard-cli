@@ -1,4 +1,4 @@
-# Paws Architecture
+# Lucard Architecture
 
 ## Crate Overview
 
@@ -8,8 +8,8 @@ The workspace contains **10 crates** after consolidation.
 
 ## Binary Crate
 
-### `paws_main`
-The CLI application entry point that produces the `paws` executable.
+### `lucard_main`
+The CLI application entry point that produces the `lucard` executable.
 
 **Responsibilities:**
 - CLI argument parsing
@@ -23,7 +23,7 @@ The CLI application entry point that produces the `paws` executable.
 
 ## Core Library Crates
 
-### `paws_domain`
+### `lucard_domain`
 Core domain models and business logic primitives.
 
 **Contains:**
@@ -35,7 +35,7 @@ Core domain models and business logic primitives.
 
 ---
 
-### `paws_app`
+### `lucard_app`
 Application logic and orchestration layer (~148 files).
 
 **Responsibilities:**
@@ -48,7 +48,7 @@ Application logic and orchestration layer (~148 files).
 
 ---
 
-### `paws_services`
+### `lucard_services`
 Service layer with business logic implementations.
 
 **Contains:**
@@ -63,7 +63,7 @@ Service layer with business logic implementations.
 
 ---
 
-### `paws_infra`
+### `lucard_infra`
 Infrastructure layer for external IO operations.
 
 **Handles:**
@@ -77,7 +77,7 @@ Infrastructure layer for external IO operations.
 
 ---
 
-### `paws_repo`
+### `lucard_repo`
 Repository pattern implementations for persistence.
 
 **Manages:**
@@ -90,7 +90,7 @@ Repository pattern implementations for persistence.
 
 ---
 
-### `paws_common`
+### `lucard_common`
 Shared utilities used across multiple crates.
 
 **Modules:**
@@ -108,7 +108,7 @@ Shared utilities used across multiple crates.
 
 ---
 
-### `paws_api`
+### `lucard_api`
 External API definitions and client implementations.
 
 **Handles:**
@@ -119,7 +119,7 @@ External API definitions and client implementations.
 
 ---
 
-### `paws_ci`
+### `lucard_ci`
 CI/CD and workflow automation utilities.
 
 **Contains:**
@@ -129,7 +129,7 @@ CI/CD and workflow automation utilities.
 
 ---
 
-### `paws_tool_macros`
+### `lucard_tool_macros`
 Procedural macros for tool definitions.
 
 **Contains:**
@@ -143,32 +143,32 @@ Procedural macros for tool definitions.
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                   paws_main (binary)                │
+│                   lucard_main (binary)                │
 ├─────────────────────────────────────────────────────┤
-│                      paws_app                       │
+│                      lucard_app                       │
 ├──────────────┬──────────────────┬───────────────────┤
-│ paws_services│    paws_repo     │     paws_api      │
+│ lucard_services│    lucard_repo     │     lucard_api      │
 ├──────────────┴──────────────────┴───────────────────┤
-│                    paws_infra                       │
+│                    lucard_infra                       │
 ├─────────────────────────────────────────────────────┤
-│                    paws_domain                      │
+│                    lucard_domain                      │
 ├─────────────────────────────────────────────────────┤
-│  paws_common  │  paws_tool_macros  │    paws_ci     │
+│  lucard_common  │  lucard_tool_macros  │    lucard_ci     │
 └───────────────┴────────────────────┴────────────────┘
 ```
 
 ## Dependency Flow
 
 ```
-paws_main
+lucard_main
     ↓
-paws_app ──→ paws_api
+lucard_app ──→ lucard_api
     ↓
-paws_services ──→ paws_repo
+lucard_services ──→ lucard_repo
     ↓
-paws_infra
+lucard_infra
     ↓
-paws_domain
+lucard_domain
     ↓
-paws_common ←── paws_tool_macros
+lucard_common ←── lucard_tool_macros
 ```

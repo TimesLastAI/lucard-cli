@@ -1,0 +1,11 @@
+---
+source: crates/lucard_services/src/provider/anthropic.rs
+expression: "normalize_ports(format!(\"{:#?}\", actual.unwrap_err()))"
+---
+Error {
+    context: "Failed to fetch models",
+    source: Error {
+        context: "401 GET http://127.0.0.1:<port>/models",
+        source: "{\"error\":{\"code\":401,\"message\":\"Invalid API key\"}}",
+    },
+}

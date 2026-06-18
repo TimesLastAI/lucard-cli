@@ -1,53 +1,91 @@
 
-[![CI Status](https://img.shields.io/github/actions/workflow/status/manthanabc/paws/ci.yml?style=for-the-badge)](https://github.com/manthanabc/paws/actions)
-[![GitHub Release](https://img.shields.io/github/v/release/manthanabc/paws?style=for-the-badge)](https://github.com/manthanabc/paws/releases)
-[![Discord](https://img.shields.io/discord/1450204700212199616?style=for-the-badge&cacheSeconds=120&logo=discord)](
-https://discord.gg/9EGrd4s9fe)
+<div align="center">
 
+# 🟪 Lucard
 
-<h1 align="center">Paws</h1>
-<p align="center">Simplified wersion of forge</p>
+### The agentic CLI, in purple.
 
-Do check the original [forge](https://github.com/antinomyhq/forge).
+A simplified, redesigned fork of [forge](https://github.com/antinomyhq/forge) — re-themed for your AI, **Lucard**, with a purple brand identity.
 
-<img width="901" height="592" alt="screenshot" src="https://github.com/user-attachments/assets/8f6dd4ee-fe36-4078-8eec-35acfd5c5198" />
+[Quickstart](#quickstart) · [Features](#features) · [Showcase](#showcase)
 
-[![asciicast](https://asciinema.org/a/Ahhq0trN61YSHssd.svg)](https://asciinema.org/a/Ahhq0trN61YSHssd)
+</div>
+
 ---
 
 ## Quickstart
 
-To get started with Paws, run the command below:
-
 ```bash
-npx pawscode@latest
+npx lucardcode@latest
 ```
 
 Or install globally:
 
 ```bash
-npm install -g pawscode
+npm install -g lucardcode
 ```
 
-<summary>About fork</summary>
+Want to build from source? See [Building](#building-from-source).
 
-Difference so far-
- - [X] Streaming tokens
- - [X] Persistent spinner
- - [X] Fixed thinking buffer
- - [X] changes to UI to maximize information density
-      [X] thinking only shown during thinking in a finite preview window
-      [X] Erase summary after next prompt
- - [X] Switching conversation shows full history 
- - [X] Rename paws to .paws
- - [X] Full screen refresh on resize
- - [WIP] Async input
+---
 
-Planned - 
- - [o] Undo/ Redo controll
- - [o] Background tasks
- - [o] Always visible prompt and enque pending tasks
- - [e] Parallel tasks
+## Showcase
+
+<div align="center">
+
+```
+╭─────────────────┬─────────────────────────────────────────────╮
+│ ░█     ██████   │ ● Session:  abc123…                          │
+│ ░█     █  █ █   │ ● Model:    anthropic/claude-sonnet-4        │
+│ ░█      ██ ██   │ ● Provider: Anthropic                        │
+│ █████████  █    │ Type /help for commands                       │
+╰─────────────────┴─────────────────────────────────────────────╯
+```
+
+*The Lucard banner — bright magenta + violet purple, terminal-aware widths.*
+
+</div>
+
+Original reference: [forge](https://github.com/antinomyhq/forge).
+
+---
+
+## Features
+
+- [x] Streaming tokens
+- [x] Persistent spinner
+- [x] Fixed thinking buffer
+- [x] UI tweaks to maximise information density
+  - [x] Thinking hidden during output, shown in a finite preview window
+  - [x] Summaries fade after the next prompt
+- [x] Switching conversation shows full history
+- [x] Config stored under `.lucard/`
+- [x] Full-screen refresh on resize
+- [x] **Purple Lucard theme** woven through the banner, status icons and OAuth flow
+- [WIP] Async input
+
+### Planned
+
+- [ ] Undo / Redo control
+- [ ] Background tasks
+- [ ] Always-visible prompt with pending task queue
+- [ ] Parallel tasks
+
+---
+
+## About this fork
+
+`lucard-cli` is a visual and structural rebrand of [`paws`](https://github.com/manthanabc/paws) (which itself is a streamlined fork of [`forge`](https://github.com/antinomyhq/forge)). No functional behaviour has been changed — only the user-facing identity.
+
+| Paws (upstream) | Lucard CLI (this fork) |
+|---|---|
+| Bin `paws` | Bin `lucard` |
+| `~/.paws/` | `~/.lucard/` |
+| `pawscode` npm pkg | `lucardcode` npm pkg |
+| PascalCase `PawsXxx` | PascalCase `LucardXxx` |
+| Blue / yellow / cyan theme | Bright magenta + violet **purple** theme |
+| `<paws_tool_call>` XML | `<lucard_tool_call>` XML |
+| License: MIT — original authors credited |
  - [o] WebUI -> conversation history management
  - [e] Reduce instructions, remove tools -> simplify
  - [o] Optimize information density on UI more
@@ -84,13 +122,13 @@ Dropeed stuff-
 
 - [Quickstart](#quickstart)
 - [Usage Examples](#usage-examples)
-- [Why Paws?](#why-paws)
+- [Why Lucard?](#why-lucard)
 - [Command-Line Options](#command-line-options)
 - [Advanced Configuration](#advanced-configuration)
   - [Provider Configuration](#provider-configuration)
     - [Managing Provider Credentials](#managing-provider-credentials)
     - [Deprecated: Environment Variables](#deprecated-environment-variables)
-  - [paws.yaml Configuration Options](#pawsyaml-configuration-options)
+  - [lucard.yaml Configuration Options](#lucardyaml-configuration-options)
   - [Environment Variables](#environment-variables)
   - [MCP Configuration](#mcp-configuration)
   - [Example Use Cases](#example-use-cases)
@@ -104,7 +142,7 @@ Dropeed stuff-
 ---
 ## Usage Examples
 
-Paws can be used in different ways depending on your needs. Here are some common usage patterns:
+Lucard can be used in different ways depending on your needs. Here are some common usage patterns:
 
 <details>
 <summary><strong>Code Understanding</strong></summary>
@@ -113,7 +151,7 @@ Paws can be used in different ways depending on your needs. Here are some common
 > Can you explain how the authentication system works in this codebase?
 ```
 
-Paws will analyze your project's structure, identify authentication-related files, and provide a detailed explanation of the authentication flow, including the relationships between different components.
+Lucard will analyze your project's structure, identify authentication-related files, and provide a detailed explanation of the authentication flow, including the relationships between different components.
 
 </details>
 
@@ -124,7 +162,7 @@ Paws will analyze your project's structure, identify authentication-related file
 > I need to add a dark mode toggle to our React application. How should I approach this?
 ```
 
-Paws will suggest the best approach based on your current codebase, explain the steps needed, and even scaffold the necessary components and styles for you.
+Lucard will suggest the best approach based on your current codebase, explain the steps needed, and even scaffold the necessary components and styles for you.
 
 </details>
 
@@ -135,7 +173,7 @@ Paws will suggest the best approach based on your current codebase, explain the 
 > I'm getting this error: "TypeError: Cannot read property 'map' of undefined". What might be causing it?
 ```
 
-Paws will analyze the error, suggest potential causes based on your code, and propose different solutions to fix the issue.
+Lucard will analyze the error, suggest potential causes based on your code, and propose different solutions to fix the issue.
 
 </details>
 
@@ -146,7 +184,7 @@ Paws will analyze the error, suggest potential causes based on your code, and pr
 > Please review the code in src/components/UserProfile.js and suggest improvements
 ```
 
-Paws will analyze the code, identify potential issues, and suggest improvements for readability, performance, security, and maintainability.
+Lucard will analyze the code, identify potential issues, and suggest improvements for readability, performance, security, and maintainability.
 
 </details>
 
@@ -157,7 +195,7 @@ Paws will analyze the code, identify potential issues, and suggest improvements 
 > I want to integrate GraphQL into this Express application. Can you explain how to get started?
 ```
 
-Paws will provide a tailored tutorial on integrating GraphQL with Express, using your specific project structure as context.
+Lucard will provide a tailored tutorial on integrating GraphQL with Express, using your specific project structure as context.
 
 </details>
 
@@ -168,7 +206,7 @@ Paws will provide a tailored tutorial on integrating GraphQL with Express, using
 > I need to design a database schema for a blog with users, posts, comments, and categories
 ```
 
-Paws will suggest an appropriate schema design, including tables/collections, relationships, indexes, and constraints based on your project's existing database technology.
+Lucard will suggest an appropriate schema design, including tables/collections, relationships, indexes, and constraints based on your project's existing database technology.
 
 </details>
 
@@ -179,7 +217,7 @@ Paws will suggest an appropriate schema design, including tables/collections, re
 > Help me refactor this class-based component to use React Hooks
 ```
 
-Paws can help modernize your codebase by walking you through refactoring steps and implementing them with your approval.
+Lucard can help modernize your codebase by walking you through refactoring steps and implementing them with your approval.
 
 </details>
 
@@ -190,13 +228,13 @@ Paws can help modernize your codebase by walking you through refactoring steps a
 > I need to merge branch 'feature/user-profile' into main but there are conflicts
 ```
 
-Paws can guide you through resolving git conflicts, explaining the differences and suggesting the best way to reconcile them.
+Lucard can guide you through resolving git conflicts, explaining the differences and suggesting the best way to reconcile them.
 
 </details>
 
-## Why Paws?
+## Why Lucard?
 
-Paws is designed for developers who want to enhance their workflow with AI assistance while maintaining full control over their development environment.
+Lucard is designed for developers who want to enhance their workflow with AI assistance while maintaining full control over their development environment.
 
 - **Zero configuration** - Just add your API key and you're ready to go
 - **Seamless integration** - Works right in your terminal, where you already work
@@ -204,11 +242,11 @@ Paws is designed for developers who want to enhance their workflow with AI assis
 - **Secure by design** - Your code stays on your machine
 - **Open-source** - Transparent, extensible, and community-driven
 
-Paws helps you code faster, solve complex problems, and learn new technologies without leaving your terminal.
+Lucard helps you code faster, solve complex problems, and learn new technologies without leaving your terminal.
 
 ## Command-Line Options
 
-Here's a quick reference of Paws's command-line options:
+Here's a quick reference of Lucard's command-line options:
 
 | Option                          | Description                                                |
 | ------------------------------- | ---------------------------------------------------------- |
@@ -226,10 +264,10 @@ Here's a quick reference of Paws's command-line options:
 
 ### Provider Configuration
 
-Paws supports multiple AI providers. The recommended way to configure providers is using the interactive login command:
+Lucard supports multiple AI providers. The recommended way to configure providers is using the interactive login command:
 
 ```bash
-paws provider login
+lucard provider login
 ```
 
 This will:
@@ -241,20 +279,20 @@ This will:
 
 ```bash
 # Login to a provider (add or update credentials)
-paws provider login
+lucard provider login
 
 # Remove provider credentials
-paws provider logout
+lucard provider logout
 
 # List supported providers
-paws provider list
+lucard provider list
 ```
 
 #### Deprecated: Environment Variables
 
-> **⚠️ DEPRECATED**: Using `.env` files for provider configuration is deprecated and will be removed in a future version. Please use `paws provider login` instead.
+> **⚠️ DEPRECATED**: Using `.env` files for provider configuration is deprecated and will be removed in a future version. Please use `lucard provider login` instead.
 
-For backward compatibility, Paws still supports environment variables. On first run, any credentials found in environment variables will be automatically migrated to file-based storage.
+For backward compatibility, Lucard still supports environment variables. On first run, any credentials found in environment variables will be automatically migrated to file-based storage.
 
 <details>
 <summary><strong>Legacy Environment Variable Setup (Deprecated)</strong></summary>
@@ -321,7 +359,7 @@ IO_INTELLIGENCE_API_KEY=<your_io_intelligence_api_key>
 ```
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: meta-llama/Llama-3.3-70B-Instruct
 ```
 
@@ -336,7 +374,7 @@ OPENAI_API_KEY=<your_openai_api_key>
 ```
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: o3-mini-high
 ```
 
@@ -351,7 +389,7 @@ ANTHROPIC_API_KEY=<your_anthropic_api_key>
 ```
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: claude-3.7-sonnet
 ```
 
@@ -375,10 +413,10 @@ model: claude-3.7-sonnet
    gcloud auth print-access-token
    ```
 
-3. **Use the token when logging in via Paws**:
+3. **Use the token when logging in via Lucard**:
 
    ```bash
-   paws provider login
+   lucard provider login
    # Select Google Vertex AI and enter your credentials
    ```
 
@@ -392,7 +430,7 @@ VERTEX_AI_AUTH_TOKEN=<your_auth_token>
 ```
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: google/gemini-2.5-pro
 ```
 
@@ -400,7 +438,7 @@ model: google/gemini-2.5-pro
 - Claude models: `claude-sonnet-4@20250514`
 - Gemini models: `gemini-2.5-pro`, `gemini-2.0-flash`
 
-Use the `/model` command in Paws CLI to see all available models.
+Use the `/model` command in Lucard CLI to see all available models.
 
 </details>
 
@@ -414,7 +452,7 @@ OPENAI_URL=<your_provider_url>
 ```
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: <provider-specific-model>
 ```
 
@@ -430,7 +468,7 @@ OPENAI_URL=https://api.groq.com/openai/v1
 ```
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: deepseek-r1-distill-llama-70b
 ```
 
@@ -439,7 +477,7 @@ model: deepseek-r1-distill-llama-70b
 <details>
 <summary><strong>Amazon Bedrock</strong></summary>
 
-To use Amazon Bedrock models with Paws, you'll need to first set up the [Bedrock Access Gateway](https://github.com/aws-samples/bedrock-access-gateway):
+To use Amazon Bedrock models with Lucard, you'll need to first set up the [Bedrock Access Gateway](https://github.com/aws-samples/bedrock-access-gateway):
 
 1. **Set up Bedrock Access Gateway**:
 
@@ -448,10 +486,10 @@ To use Amazon Bedrock models with Paws, you'll need to first set up the [Bedrock
    - Deploy the CloudFormation stack
    - Note your API Base URL from the CloudFormation outputs
 
-2. **Configure in Paws**:
+2. **Configure in Lucard**:
 
    ```bash
-   paws provider login
+   lucard provider login
    # Select OpenAI-compatible provider and enter your Bedrock Gateway details
    ```
 
@@ -464,7 +502,7 @@ OPENAI_URL=<your_bedrock_gateway_base_url>
 ```
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: anthropic.claude-3-opus
 ```
 
@@ -474,16 +512,16 @@ model: anthropic.claude-3-opus
 
 ---
 
-### paws.yaml Configuration Options
+### lucard.yaml Configuration Options
 
 ### Environment Variables
 
-Paws supports several environment variables for advanced configuration and fine-tuning. These can be set in your `.env` file or system environment.
+Lucard supports several environment variables for advanced configuration and fine-tuning. These can be set in your `.env` file or system environment.
 
 <details>
 <summary><strong>Retry Configuration</strong></summary>
 
-Control how Paws handles retry logic for failed requests:
+Control how Lucard handles retry logic for failed requests:
 
 ```bash
 # .env
@@ -530,7 +568,7 @@ Override default API endpoints:
 
 ```bash
 # .env
-FORGE_API_URL=https://api.pawscode.dev  # Custom Paws API URL (default: https://api.pawscode.dev)
+FORGE_API_URL=https://api.lucardcode.dev  # Custom Lucard API URL (default: https://api.lucardcode.dev)
 ```
 
 </details>
@@ -557,10 +595,10 @@ Configure the ZSH plugin behavior:
 
 ```bash
 # .env
-FORGE_BIN=paws                    # Command to use for paws operations (default: "paws")
+FORGE_BIN=lucard                    # Command to use for lucard operations (default: "lucard")
 ```
 
-The `FORGE_BIN` environment variable allows you to customize the command used by the ZSH plugin when transforming `#` prefixed commands. If not set, it defaults to `"paws"`.
+The `FORGE_BIN` environment variable allows you to customize the command used by the ZSH plugin when transforming `#` prefixed commands. If not set, it defaults to `"lucard"`.
 
 </details>
 
@@ -572,8 +610,8 @@ System-level environment variables (usually set automatically):
 ```bash
 # .env
 FORGE_MAX_SEARCH_RESULT_BYTES=101024   # Maximum bytes for search results (default: 101024 - 10 KB)
-FORGE_HISTORY_FILE=/path/to/history    # Custom path for Paws history file (default: uses system default location)
-FORGE_BANNER="Your custom banner text" # Custom banner text to display on startup (default: Paws ASCII art)
+FORGE_HISTORY_FILE=/path/to/history    # Custom path for Lucard history file (default: uses system default location)
+FORGE_BANNER="Your custom banner text" # Custom banner text to display on startup (default: Lucard ASCII art)
 FORGE_SHOW_TASK_STATS=true             # Show task stats such as file changes, token usage etc. after completion (default: true)
 FORGE_MAX_CONVERSATIONS=100            # Maximum number of conversations to show in list (default: 100)
 SHELL=/bin/zsh                         # Shell to use for command execution (Unix/Linux/macOS)
@@ -582,7 +620,7 @@ COMSPEC=cmd.exe                        # Command processor to use (Windows)
 
 </details>
 
-The `paws.yaml` file supports several advanced configuration options that let you customize Paws's behavior.
+The `lucard.yaml` file supports several advanced configuration options that let you customize Lucard's behavior.
 
 <details>
 <summary><strong>Custom Rules</strong></summary>
@@ -590,7 +628,7 @@ The `paws.yaml` file supports several advanced configuration options that let yo
 Add your own guidelines that all agents should follow when generating responses.
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 custom_rules: |
   1. Always add comprehensive error handling to any code you write.
   2. Include unit tests for all new functions.
@@ -605,7 +643,7 @@ custom_rules: |
 Define custom commands as shortcuts for repetitive prompts:
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 commands:
   - name: "refactor"
     description: "Refactor selected code"
@@ -620,7 +658,7 @@ commands:
 Specify the default AI model to use for all agents in the workflow.
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 model: "claude-3.7-sonnet"
 ```
 
@@ -629,10 +667,10 @@ model: "claude-3.7-sonnet"
 <details>
 <summary><strong>Max Walker Depth</strong></summary>
 
-Control how deeply Paws traverses your project directory structure when gathering context.
+Control how deeply Lucard traverses your project directory structure when gathering context.
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 max_walker_depth: 3 # Limit directory traversal to 3 levels deep
 ```
 
@@ -644,7 +682,7 @@ max_walker_depth: 3 # Limit directory traversal to 3 levels deep
 Adjust the creativity and randomness in AI responses. Lower values (0.0-0.3) produce more focused, deterministic outputs, while higher values (0.7-2.0) generate more diverse and creative results.
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 temperature: 0.7 # Balanced creativity and focus
 ```
 
@@ -652,10 +690,10 @@ temperature: 0.7 # Balanced creativity and focus
 <details>
 <summary><strong>Tool Max Failure Limit</strong></summary>
 
-Control how many times a tool can fail before Paws forces completion to prevent infinite retry loops. This helps avoid situations where an agent gets stuck repeatedly trying the same failing operation.
+Control how many times a tool can fail before Lucard forces completion to prevent infinite retry loops. This helps avoid situations where an agent gets stuck repeatedly trying the same failing operation.
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 max_tool_failure_per_turn: 3 # Allow up to 3 failures per tool before forcing completion
 ```
 
@@ -669,11 +707,11 @@ Set to a higher value if you want more retry attempts, or lower if you want fast
 Limit the maximum number of requests an agent can make in a single conversation turn. This prevents runaway conversations and helps control API usage and costs.
 
 ```yaml
-# paws.yaml
+# lucard.yaml
 max_requests_per_turn: 50 # Allow up to 50 requests per turn
 ```
 
-When this limit is reached, Paws will:
+When this limit is reached, Lucard will:
 
 - Ask you if you wish to continue
 - If you respond with 'Yes', it will continue the conversation
@@ -694,19 +732,19 @@ Configure MCP servers using the CLI:
 
 ```bash
 # List all MCP servers
-paws mcp list
+lucard mcp list
 
 # Add a new server
-paws mcp add
+lucard mcp add
 
 # Add a server using JSON format
-paws mcp add-json
+lucard mcp add-json
 
 # Get server details
-paws mcp get
+lucard mcp get
 
 # Remove a server
-paws mcp remove
+lucard mcp remove
 ```
 
 Or manually create a `.mcp.json` file with the following structure:
@@ -750,13 +788,13 @@ MCP tools can be used as part of multi-agent workflows, allowing specialized age
 
 ## Documentation
 
-For comprehensive documentation on all features and capabilities, please visit the [documentation site](https://github.com/manthanabc/paws/tree/main/docs).
+For comprehensive documentation on all features and capabilities, please visit the [documentation site](https://github.com/manthanabc/lucard/tree/main/docs).
 
 ---
 
 ## Support Us
 
-Your support drives Paws's continued evolution! By starring our GitHub repository, you:
+Your support drives Lucard's continued evolution! By starring our GitHub repository, you:
 
 - Help others discover this powerful tool 🔍
 - Motivate our development team 💪

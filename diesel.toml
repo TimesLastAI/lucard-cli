@@ -1,5 +1,5 @@
 [print_schema]
-file = "crates/paws_repo/src/database/schema.rs"
+file = "crates/lucard_repo/src/database/schema.rs"
 
 [migrations_directory]
-dir = "crates/paws_repo/src/database/migrations"
+dir = "crates/lucard_repo/src/database/migrations"

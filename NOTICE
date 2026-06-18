@@ -1,0 +1,19 @@
+Lucard CLI
+Copyright 2026 TimesLast
+https://github.com/TimesLast/lucard-cli
+
+This product is a visual/structural rebrand of:
+  "paws" — https://github.com/manthanabc/paws
+  which itself is a fork of:
+    "forge" — https://github.com/antinomyhq/forge (Apache 2.0)
+
+Lucard CLI is distributed under the Apache License, Version 2.0
+(see the LICENSE file in the root of this repository).
+
+In accordance with Apache 2.0 Section 4(d), this NOTICE preserves
+attribution to the upstream project and its authors.
+
+No functional changes have been made; only user-facing identity
+(binary name, branding strings, log filters, XML tag names for
+parsing, file/directory names, and the purple colour theme) has
+been updated. See README.md for details.

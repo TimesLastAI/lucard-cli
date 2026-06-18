@@ -23,7 +23,7 @@ def update_deps(deps):
         del deps[crate]
         
     if modified:
-        deps["paws_common"] = {"workspace": True}
+        deps["lucard_common"] = {"workspace": True}
         
     return modified
 

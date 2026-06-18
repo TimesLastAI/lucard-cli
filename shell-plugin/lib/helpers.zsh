@@ -1,32 +1,32 @@
 #!/usr/bin/env zsh
 
-# Core utility functions for paws plugin
+# Core utility functions for lucard plugin
 
 # Lazy loader for commands cache
 # Loads the commands list only when first needed, avoiding startup cost
-function _paws_get_commands() {
-    if [[ -z "$_PAWS_COMMANDS" ]]; then
-        _PAWS_COMMANDS="$(CLICOLOR_FORCE=0 $_PAWS_BIN list commands --porcelain 2>/dev/null)"
+function _lucard_get_commands() {
+    if [[ -z "$_LUCARD_COMMANDS" ]]; then
+        _LUCARD_COMMANDS="$(CLICOLOR_FORCE=0 $_LUCARD_BIN list commands --porcelain 2>/dev/null)"
     fi
-    echo "$_PAWS_COMMANDS"
+    echo "$_LUCARD_COMMANDS"
 }
 
 # Private fzf function with common options for consistent UX
-function _paws_fzf() {
+function _lucard_fzf() {
     fzf --exact --cycle --select-1 --height 100% --no-scrollbar --ansi --color="header:bold" "$@"
 }
 
-# Helper function to execute paws commands consistently
+# Helper function to execute lucard commands consistently
 # This ensures proper handling of special characters and consistent output
-function _paws_exec() {
-    # Ensure PAWS_ACTIVE_AGENT always has a value, default to "paws"
-    local agent_id="${_PAWS_ACTIVE_AGENT:-paws}"
+function _lucard_exec() {
+    # Ensure LUCARD_ACTIVE_AGENT always has a value, default to "lucard"
+    local agent_id="${_LUCARD_ACTIVE_AGENT:-lucard}"
     
-    eval "$_PAWS_BIN --agent $(printf '%q' "$agent_id") $(printf '%q ' "$@")"
+    eval "$_LUCARD_BIN --agent $(printf '%q' "$agent_id") $(printf '%q ' "$@")"
 }
 
 # Helper function to clear buffer and reset prompt
-function _paws_reset() {
+function _lucard_reset() {
     # Invoke precmd hooks to ensure prompt customizations (starship, oh-my-zsh themes, etc.) refresh properly
     for precmd in $precmd_functions; do
         if typeset -f "$precmd" >/dev/null 2>&1; then
@@ -43,10 +43,10 @@ function _paws_reset() {
 
 # Helper function to find the index of a value in a list (1-based)
 # Returns the index if found, 1 otherwise
-# Usage: _paws_find_index <output> <value_to_find> [field_number]
+# Usage: _lucard_find_index <output> <value_to_find> [field_number]
 # field_number: which field to compare (1 for first field, 2 for second field, etc.)
 # Note: This function expects porcelain output WITH headers and skips the header line
-function _paws_find_index() {
+function _lucard_find_index() {
     local output="$1"
     local value_to_find="$2"
     local field_number="${3:-1}"  # Default to first field if not specified
@@ -74,10 +74,10 @@ function _paws_find_index() {
 }
 
 # Helper function to print messages with consistent formatting based on log level
-# Usage: _paws_log <level> <message>
+# Usage: _lucard_log <level> <message>
 # Levels: error, info, success, warning, debug
-# Color scheme matches crates/paws_main/src/title_display.rs
-function _paws_log() {
+# Color scheme matches crates/lucard_main/src/title_display.rs
+function _lucard_log() {
     local level="$1"
     local message="$2"
     local timestamp="\033[90m[$(date '+%H:%M:%S')]\033[0m"

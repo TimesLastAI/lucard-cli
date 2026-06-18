@@ -4,7 +4,7 @@
 
 # Action handler: Commit changes with AI-generated message
 # Usage: :commit [additional context]
-function _paws_action_commit() {
+function _lucard_action_commit() {
     local additional_context="$1"
     local commit_message
     # Generate AI commit message
@@ -15,9 +15,9 @@ function _paws_action_commit() {
     
     # Build commit command with optional additional context
     if [[ -n "$additional_context" ]]; then
-        commit_message=$(FORCE_COLOR=true CLICOLOR_FORCE=1 $_PAWS_BIN commit --preview --max-diff "$_PAWS_MAX_COMMIT_DIFF" $additional_context)
+        commit_message=$(FORCE_COLOR=true CLICOLOR_FORCE=1 $_LUCARD_BIN commit --preview --max-diff "$_LUCARD_MAX_COMMIT_DIFF" $additional_context)
     else
-        commit_message=$(FORCE_COLOR=true CLICOLOR_FORCE=1 $_PAWS_BIN commit --preview --max-diff "$_PAWS_MAX_COMMIT_DIFF")
+        commit_message=$(FORCE_COLOR=true CLICOLOR_FORCE=1 $_LUCARD_BIN commit --preview --max-diff "$_LUCARD_MAX_COMMIT_DIFF")
     fi
     
     # Proceed only if command succeeded
@@ -36,6 +36,6 @@ function _paws_action_commit() {
         zle reset-prompt
     else
         echo "$commit_message"
-        _paws_reset
+        _lucard_reset
     fi
 }

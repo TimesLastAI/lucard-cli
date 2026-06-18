@@ -1,0 +1,114 @@
+[package]
+name = "lucard_domain"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+derive-getters = "0.5.0"
+lazy_static = "1.5.0"
+
+[dependencies.anyhow]
+workspace = true
+
+[dependencies.async-trait]
+workspace = true
+
+[dependencies.chrono]
+workspace = true
+
+[dependencies.derive_more]
+workspace = true
+
+[dependencies.derive_setters]
+workspace = true
+
+[dependencies.fnv_rs]
+workspace = true
+
+[dependencies.nom]
+workspace = true
+
+[dependencies.schemars]
+workspace = true
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.eserde]
+version = "0.1.7"
+features = [ "json",]
+
+[dependencies.serde_json]
+workspace = true
+features = [ "raw_value",]
+
+[dependencies.strum]
+workspace = true
+
+[dependencies.strum_macros]
+workspace = true
+
+[dependencies.thiserror]
+workspace = true
+
+[dependencies.tokio]
+workspace = true
+
+[dependencies.tokio-stream]
+workspace = true
+
+[dependencies.uuid]
+workspace = true
+
+[dependencies.tracing]
+workspace = true
+
+[dependencies.url]
+workspace = true
+
+[dependencies.merge]
+workspace = true
+
+[dependencies.serde_yml]
+workspace = true
+
+[dependencies.base64]
+workspace = true
+
+[dependencies.regex]
+workspace = true
+
+[dependencies.lucard_tool_macros]
+workspace = true
+
+[dependencies.convert_case]
+workspace = true
+
+[dependencies.glob]
+workspace = true
+
+[dependencies.fake]
+version = "4.4.0"
+features = [ "derive",]
+
+[dependencies.lucard_common]
+workspace = true
+features = ["json"]
+
+[dev-dependencies.insta]
+workspace = true
+features = [ "yaml",]
+
+[dev-dependencies.pretty_assertions]
+workspace = true
+
+[dev-dependencies.is_ci]
+workspace = true
+
+[dev-dependencies.fake]
+version = "4.4.0"
+features = [ "derive",]
+
+[dev-dependencies.lucard_common]
+workspace = true
+features = ["json"]

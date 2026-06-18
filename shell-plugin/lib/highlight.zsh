@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# Syntax highlighting configuration for paws commands
+# Syntax highlighting configuration for lucard commands
 # Style the conversation pattern with appropriate highlighting
 # Keywords in yellow, rest in default white
 

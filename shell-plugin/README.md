@@ -1,10 +1,10 @@
-# Paws ZSH Plugin
+# Lucard ZSH Plugin
 
 A powerful ZSH plugin that provides intelligent command transformation, file tagging, and conversation management for the Forge AI assistant.
 
 ## Features
 
-- **Smart Command Transformation**: Convert `:command` syntax into paws executions
+- **Smart Command Transformation**: Convert `:command` syntax into lucard executions
 - **Agent Selection**: Tab completion for available agents using `:agent_name`
 - **File Tagging**: Interactive file selection with `@[filename]` syntax
 - **Syntax Highlighting**: Visual feedback for commands and tagged files
@@ -17,7 +17,7 @@ Before using this plugin, ensure you have the following tools installed:
 
 - **fzf** - Command-line fuzzy finder
 - **fd** - Fast file finder (alternative to find)
-- **paws** - The CLI binary
+- **lucard** - The CLI binary
 
 ### Installation of Prerequisites
 
@@ -164,21 +164,21 @@ The plugin provides visual feedback through syntax highlighting:
 Customize the plugin behavior by setting these variables before loading the plugin:
 
 ```bash
-# Custom paws binary location
-export PAWS_BIN="/path/to/custom/paws"
+# Custom lucard binary location
+export LUCARD_BIN="/path/to/custom/lucard"
 ```
 
 ### Available Configuration Variables
 
-- `PAWS_BIN`: Path to the paws executable (default: `paws`)
+- `LUCARD_BIN`: Path to the lucard executable (default: `lucard`)
 - Internal pattern matching for conversation syntax (`:`)
 - New session command keyword: `:new` or `:n`
 
-### .paws Directory
+### .lucard Directory
 
-The plugin creates a `.paws` directory in your current working directory (similar to `.git`) for temporary files:
+The plugin creates a `.lucard` directory in your current working directory (similar to `.git`) for temporary files:
 
-- `PAWS_EDITMSG.md`: Temporary file used when opening an external editor with `:edit`
+- `LUCARD_EDITMSG.md`: Temporary file used when opening an external editor with `:edit`
 
 ## Advanced Features
 
@@ -187,14 +187,14 @@ The plugin creates a `.paws` directory in your current working directory (simila
 All transformed commands are properly saved to ZSH history, allowing you to:
 
 - Navigate command history with arrow keys
-- Search previous paws commands with `Ctrl+R`
+- Search previous lucard commands with `Ctrl+R`
 - Reuse complex commands with file tags
 
 ### Keyboard Shortcuts
 
 - **Tab**: Interactive completion for files (`@`) and agents (`:`)
 - **Enter**: Transform and execute `:commands`
-- **Ctrl+C**: Interrupt running paws commands
+- **Ctrl+C**: Interrupt running lucard commands
 
 ## Examples
 

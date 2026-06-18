@@ -1,0 +1,40 @@
+[package]
+name = "lucard_api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies.anyhow]
+workspace = true
+
+[dependencies.url]
+workspace = true
+
+[dependencies.async-trait]
+workspace = true
+
+[dependencies.lucard_domain]
+workspace = true
+
+[dependencies.lucard_services]
+workspace = true
+
+[dependencies.lucard_repo]
+workspace = true
+
+[dependencies.lucard_infra]
+workspace = true
+
+[dependencies.futures]
+workspace = true
+
+[dependencies.lucard_app]
+workspace = true
+
+[dependencies.serde_json]
+workspace = true
+
+[dependencies.lucard_common]
+workspace = true
+
+[dev-dependencies.tokio]
+workspace = true

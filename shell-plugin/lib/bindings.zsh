@@ -1,14 +1,14 @@
 #!/usr/bin/env zsh
 
-# Key bindings and widget registration for paws plugin
+# Key bindings and widget registration for lucard plugin
 
 # Register ZLE widgets
-zle -N paws-accept-line
-zle -N paws-completion
+zle -N lucard-accept-line
+zle -N lucard-completion
 
 # Custom bracketed-paste handler to fix syntax highlighting after paste
 # Addresses timing issues by ensuring buffer state stabilizes before prompt reset
-function paws-bracketed-paste() {
+function lucard-bracketed-paste() {
     # Call the built-in bracketed-paste widget first
     zle .$WIDGET "$@"
     
@@ -22,10 +22,10 @@ function paws-bracketed-paste() {
 }
 
 # Register the bracketed paste widget to fix highlighting on paste
-zle -N bracketed-paste paws-bracketed-paste
+zle -N bracketed-paste lucard-bracketed-paste
 
 # Bind Enter to our custom accept-line that transforms :commands
-bindkey '^M' paws-accept-line
-bindkey '^J' paws-accept-line
+bindkey '^M' lucard-accept-line
+bindkey '^J' lucard-accept-line
 # Update the Tab binding to use the new completion widget
-bindkey '^I' paws-completion  # Tab for both @ and :command completion
+bindkey '^I' lucard-completion  # Tab for both @ and :command completion

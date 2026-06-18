@@ -3,7 +3,7 @@
 # Conversation management action handlers
 
 # Action handler: List/switch conversations
-function _paws_action_conversation() {
+function _lucard_action_conversation() {
     local input_text="$1"
     
     echo
@@ -13,77 +13,77 @@ function _paws_action_conversation() {
         local conversation_id="$input_text"
         
         # Set the conversation as active
-        _PAWS_CONVERSATION_ID="$conversation_id"
+        _LUCARD_CONVERSATION_ID="$conversation_id"
         
         # Show conversation content
         echo
-        _paws_exec conversation show "$conversation_id"
+        _lucard_exec conversation show "$conversation_id"
         
         # Show conversation info
-        _paws_exec conversation info "$conversation_id"
+        _lucard_exec conversation info "$conversation_id"
         
         # Print log about conversation switching
-        _paws_log success "Switched to conversation \033[1m${conversation_id}\033[0m"
+        _lucard_log success "Switched to conversation \033[1m${conversation_id}\033[0m"
         
-        _paws_reset
+        _lucard_reset
         return 0
     fi
     
     # Get conversations list
     local conversations_output
-    conversations_output=$($_PAWS_BIN conversation list --porcelain 2>/dev/null)
+    conversations_output=$($_LUCARD_BIN conversation list --porcelain 2>/dev/null)
     
     if [[ -n "$conversations_output" ]]; then
         # Get current conversation ID if set
-        local current_id="$_PAWS_CONVERSATION_ID"
+        local current_id="$_LUCARD_CONVERSATION_ID"
         
         # Create prompt with current conversation
         local prompt_text="Conversation ❯ "
         local fzf_args=(
             --prompt="$prompt_text"
-            --delimiter="$_PAWS_DELIMITER"
+            --delimiter="$_LUCARD_DELIMITER"
             --with-nth="2,3"
-            --preview="CLICOLOR_FORCE=1 $_PAWS_BIN conversation info {1}; echo; CLICOLOR_FORCE=1 $_PAWS_BIN conversation show {1}"
-            $_PAWS_PREVIEW_WINDOW
+            --preview="CLICOLOR_FORCE=1 $_LUCARD_BIN conversation info {1}; echo; CLICOLOR_FORCE=1 $_LUCARD_BIN conversation show {1}"
+            $_LUCARD_PREVIEW_WINDOW
         )
 
         # If there's a current conversation, position cursor on it
         if [[ -n "$current_id" ]]; then
             # For conversations, compare against the first field (conversation_id)
-            local index=$(_paws_find_index "$conversations_output" "$current_id" 1)
+            local index=$(_lucard_find_index "$conversations_output" "$current_id" 1)
             fzf_args+=(--bind="start:pos($index)")
         fi
 
         local selected_conversation
         # Use fzf with preview showing the last message from the conversation
-        selected_conversation=$(echo "$conversations_output" | _paws_fzf --header-lines=1 "${fzf_args[@]}")
+        selected_conversation=$(echo "$conversations_output" | _lucard_fzf --header-lines=1 "${fzf_args[@]}")
         
         if [[ -n "$selected_conversation" ]]; then
             # Extract the first field (UUID) - everything before the first multi-space delimiter
             local conversation_id=$(echo "$selected_conversation" | sed -E 's/  .*//' | tr -d '\n')
             
             # Set the selected conversation as active (in parent shell)
-            _PAWS_CONVERSATION_ID="$conversation_id"
+            _LUCARD_CONVERSATION_ID="$conversation_id"
             # Show conversation content
             echo
-            _paws_exec conversation show "$conversation_id"
+            _lucard_exec conversation show "$conversation_id"
             
             # Show conversation info
-            _paws_exec conversation info "$conversation_id"
+            _lucard_exec conversation info "$conversation_id"
             
             # Print log about conversation switching
-            _paws_log success "Switched to conversation \033[1m${conversation_id}\033[0m"
+            _lucard_log success "Switched to conversation \033[1m${conversation_id}\033[0m"
             
         fi
     else
-        _paws_log error "No conversations found"
+        _lucard_log error "No conversations found"
     fi
     
-    _paws_reset
+    _lucard_reset
 }
 
 # Action handler: Clone conversation
-function _paws_action_clone() {
+function _lucard_action_clone() {
     local input_text="$1"
     local clone_target="$input_text"
     
@@ -91,63 +91,63 @@ function _paws_action_clone() {
     
     # Handle explicit clone target if provided
     if [[ -n "$clone_target" ]]; then
-        _paws_clone_and_switch "$clone_target"
-        _paws_reset
+        _lucard_clone_and_switch "$clone_target"
+        _lucard_reset
         return 0
     fi
     
     # Get conversations list for fzf selection
     local conversations_output
-    conversations_output=$($_PAWS_BIN conversation list --porcelain 2>/dev/null)
+    conversations_output=$($_LUCARD_BIN conversation list --porcelain 2>/dev/null)
     
     if [[ -z "$conversations_output" ]]; then
-        _paws_log error "No conversations found"
-        _paws_reset
+        _lucard_log error "No conversations found"
+        _lucard_reset
         return 0
     fi
     
     # Get current conversation ID if set
-    local current_id="$_PAWS_CONVERSATION_ID"
+    local current_id="$_LUCARD_CONVERSATION_ID"
     
     # Create fzf interface similar to :conversation
     local prompt_text="Clone Conversation ❯ "
     local fzf_args=(
         --prompt="$prompt_text"
-        --delimiter="$_PAWS_DELIMITER"
+        --delimiter="$_LUCARD_DELIMITER"
         --with-nth="2,3"
-        --preview="CLICOLOR_FORCE=1 $_PAWS_BIN conversation info {1}; echo; CLICOLOR_FORCE=1 $_PAWS_BIN conversation show {1}"
-        $_PAWS_PREVIEW_WINDOW
+        --preview="CLICOLOR_FORCE=1 $_LUCARD_BIN conversation info {1}; echo; CLICOLOR_FORCE=1 $_LUCARD_BIN conversation show {1}"
+        $_LUCARD_PREVIEW_WINDOW
     )
 
     # Position cursor on current conversation if available
     if [[ -n "$current_id" ]]; then
-        local index=$(_paws_find_index "$conversations_output" "$current_id")
+        local index=$(_lucard_find_index "$conversations_output" "$current_id")
         fzf_args+=(--bind="start:pos($index)")
     fi
 
     local selected_conversation
-    selected_conversation=$(echo "$conversations_output" | _paws_fzf --header-lines=1 "${fzf_args[@]}")
+    selected_conversation=$(echo "$conversations_output" | _lucard_fzf --header-lines=1 "${fzf_args[@]}")
     
     if [[ -n "$selected_conversation" ]]; then
         # Extract conversation ID
         local conversation_id=$(echo "$selected_conversation" | sed -E 's/  .*//' | tr -d '\n')
-        _paws_clone_and_switch "$conversation_id"
+        _lucard_clone_and_switch "$conversation_id"
     fi
     
-    _paws_reset
+    _lucard_reset
 }
 
 # Helper function to clone and switch to conversation
-function _paws_clone_and_switch() {
+function _lucard_clone_and_switch() {
     local clone_target="$1"
     
     # Store original conversation ID to check if we're cloning current conversation
-    local original_conversation_id="$_PAWS_CONVERSATION_ID"
+    local original_conversation_id="$_LUCARD_CONVERSATION_ID"
     
     # Execute clone command
-    _paws_log info "Cloning conversation \033[1m${clone_target}\033[0m"
+    _lucard_log info "Cloning conversation \033[1m${clone_target}\033[0m"
     local clone_output
-    clone_output=$($_PAWS_BIN conversation clone "$clone_target" 2>&1)
+    clone_output=$($_LUCARD_BIN conversation clone "$clone_target" 2>&1)
     local clone_exit_code=$?
     
     if [[ $clone_exit_code -eq 0 ]]; then
@@ -156,23 +156,23 @@ function _paws_clone_and_switch() {
         
         if [[ -n "$new_id" ]]; then
             # Set as active conversation
-            _PAWS_CONVERSATION_ID="$new_id"
+            _LUCARD_CONVERSATION_ID="$new_id"
             
-            _paws_log success "└─ Switched to conversation \033[1m${new_id}\033[0m"
+            _lucard_log success "└─ Switched to conversation \033[1m${new_id}\033[0m"
             
             # Show content and info only if cloning a different conversation (not current one)
             if [[ "$clone_target" != "$original_conversation_id" ]]; then
                 echo
-                _paws_exec conversation show "$new_id"
+                _lucard_exec conversation show "$new_id"
                 
                 # Show new conversation info
                 echo
-                _paws_exec conversation info "$new_id"
+                _lucard_exec conversation info "$new_id"
             fi
         else
-            _paws_log error "Failed to extract new conversation ID from clone output"
+            _lucard_log error "Failed to extract new conversation ID from clone output"
         fi
     else
-        _paws_log error "Failed to clone conversation: $clone_output"
+        _lucard_log error "Failed to clone conversation: $clone_output"
     fi
 }

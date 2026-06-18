@@ -1,0 +1,153 @@
+[package]
+name = "lucard_services"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+lazy_static = "1.5.0"
+
+[dependencies.chrono]
+workspace = true
+
+[dependencies.tokio]
+workspace = true
+
+[dependencies.tracing]
+workspace = true
+
+[dependencies.async-trait]
+workspace = true
+
+[dependencies.async-recursion]
+workspace = true
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_json]
+workspace = true
+
+[dependencies.derive_setters]
+workspace = true
+
+[dependencies.tokio-stream]
+workspace = true
+
+[dependencies.handlebars]
+workspace = true
+
+[dependencies.dashmap]
+workspace = true
+
+[dependencies.anyhow]
+workspace = true
+
+[dependencies.futures]
+workspace = true
+
+[dependencies.reqwest]
+workspace = true
+
+[dependencies.regex]
+workspace = true
+
+[dependencies.thiserror]
+workspace = true
+
+[dependencies.html2md]
+workspace = true
+
+[dependencies.glob]
+workspace = true
+
+[dependencies.grep-searcher]
+workspace = true
+
+[dependencies.grep-regex]
+workspace = true
+
+[dependencies.base64]
+workspace = true
+
+[dependencies.strum]
+workspace = true
+
+[dependencies.strum_macros]
+workspace = true
+
+[dependencies.bytes]
+workspace = true
+
+[dependencies.infer]
+workspace = true
+
+[dependencies.serde_yml]
+workspace = true
+
+[dependencies.gray_matter]
+workspace = true
+
+[dependencies.merge]
+workspace = true
+
+[dependencies.strip-ansi-escapes]
+workspace = true
+
+[dependencies.lucard_app]
+workspace = true
+
+[dependencies.url]
+workspace = true
+
+[dependencies.reqwest-eventsource]
+workspace = true
+
+[dependencies.lucard_domain]
+workspace = true
+
+[dependencies.aws-sdk-bedrockruntime]
+workspace = true
+
+[dependencies.aws-smithy-types]
+workspace = true
+
+[dependencies.aws-smithy-async]
+workspace = true
+
+[dependencies.schemars]
+workspace = true
+
+[dependencies.lucard_common]
+workspace = true
+
+[dependencies.tracing-appender]
+workspace = true
+
+[dependencies.tracing-subscriber]
+workspace = true
+
+[dependencies.insta]
+workspace = true
+
+[dev-dependencies.tokio]
+workspace = true
+features = [ "macros", "rt", "time", "test-util",]
+
+[dev-dependencies.insta]
+workspace = true
+
+[dev-dependencies.mockito]
+workspace = true
+
+[dev-dependencies.pretty_assertions]
+workspace = true
+
+[dev-dependencies.tempfile]
+workspace = true
+
+[dev-dependencies.fake]
+version = "4.4.0"
+features = [ "derive",]
+
+[dev-dependencies.lucard_common]
+workspace = true

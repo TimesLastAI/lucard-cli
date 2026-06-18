@@ -2,7 +2,7 @@
 
 # Custom completion widget that handles both :commands and @ completion
 
-function paws-completion() {
+function lucard-completion() {
     local current_word="${LBUFFER##* }"
     
     # Handle @ completion (files and directories)
@@ -10,15 +10,15 @@ function paws-completion() {
         local filter_text="${current_word#@}"
         local selected
         local fzf_args=(
-            --preview="if [ -d {} ]; then ls -la --color=always {} 2>/dev/null || ls -la {}; else $_PAWS_CAT_CMD {}; fi"
-            $_PAWS_PREVIEW_WINDOW
+            --preview="if [ -d {} ]; then ls -la --color=always {} 2>/dev/null || ls -la {}; else $_LUCARD_CAT_CMD {}; fi"
+            $_LUCARD_PREVIEW_WINDOW
         )
         
-        local file_list=$($_PAWS_FD_CMD --type f --type d --hidden --exclude .git)
+        local file_list=$($_LUCARD_FD_CMD --type f --type d --hidden --exclude .git)
         if [[ -n "$filter_text" ]]; then
-            selected=$(echo "$file_list" | _paws_fzf --query "$filter_text" "${fzf_args[@]}")
+            selected=$(echo "$file_list" | _lucard_fzf --query "$filter_text" "${fzf_args[@]}")
         else
-            selected=$(echo "$file_list" | _paws_fzf "${fzf_args[@]}")
+            selected=$(echo "$file_list" | _lucard_fzf "${fzf_args[@]}")
         fi
         
         if [[ -n "$selected" ]]; then
@@ -38,14 +38,14 @@ function paws-completion() {
         local filter_text="${LBUFFER#:}"
         
         # Lazily load the commands list
-        local commands_list=$(_paws_get_commands)
+        local commands_list=$(_lucard_get_commands)
         if [[ -n "$commands_list" ]]; then
             # Use fzf for interactive selection with prefilled filter
             local selected
             if [[ -n "$filter_text" ]]; then
-                selected=$(echo "$commands_list" | _paws_fzf --header-lines=1 --delimiter="$_PAWS_DELIMITER" --nth=1 --query "$filter_text" --prompt="Command ❯ ")
+                selected=$(echo "$commands_list" | _lucard_fzf --header-lines=1 --delimiter="$_LUCARD_DELIMITER" --nth=1 --query "$filter_text" --prompt="Command ❯ ")
             else
-                selected=$(echo "$commands_list" | _paws_fzf --header-lines=1 --delimiter="$_PAWS_DELIMITER" --nth=1 --prompt="Command ❯ ")
+                selected=$(echo "$commands_list" | _lucard_fzf --header-lines=1 --delimiter="$_LUCARD_DELIMITER" --nth=1 --prompt="Command ❯ ")
             fi
             
             if [[ -n "$selected" ]]; then
