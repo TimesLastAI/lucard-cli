@@ -54,7 +54,7 @@ jobs:
     - name: Cargo Clippy
       run: cargo +nightly clippy --all-features --all-targets --workspace --fix --allow-dirty -- -D warnings
     - name: Autofix
-      uses: autofix-ci/action@635ffb0c9798bd160680f18fd73371e355b85f27
+      uses: autofix-ci/action@c5b2d67aa2274e7b5a18224e8171550871fc7e4a
 concurrency:
   group: autofix-${{github.ref}}
   cancel-in-progress: false
