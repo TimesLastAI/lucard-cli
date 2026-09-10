@@ -9,7 +9,7 @@ lucard_services.workspace = true
 
 
 [dev-dependencies]
-serial_test = "3.4"
+serial_test = "4.0"
 
 [dependencies.lucard_app]
 workspace = true
@@ -90,7 +90,7 @@ workspace = true
 workspace = true
 
 [dev-dependencies.fake]
-version = "4.4.0"
+version = "5.1.0"
 features = [ "derive",]
 
 [dev-dependencies.derive_setters]
