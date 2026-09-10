@@ -9,13 +9,13 @@ edition = "2024"
 
 [dependencies]
 atty = "0.2"
-base64 = "0.22"
+base64 = "0.23"
 crossterm = { version = "0.29", features = ["event-stream"] }
 futures.workspace = true
 lucard_services.workspace = true
 
 [dev-dependencies]
-serial_test = "3.4"
+serial_test = "4.0"
 strip-ansi-escapes = "0.2"
 
 [dependencies.clap]
