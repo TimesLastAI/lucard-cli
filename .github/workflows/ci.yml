@@ -41,13 +41,13 @@ jobs:
       contents: read
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v5
+      uses: actions/checkout@v7
     - name: Setup Protobuf Compiler
       uses: arduino/setup-protoc@v3
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup Rust Toolchain
-      uses: actions-rust-lang/setup-rust-toolchain@v1
+      uses: actions-rust-lang/setup-rust-toolchain@v2
       with:
         toolchain: stable
     - name: Cargo Test
@@ -66,10 +66,10 @@ jobs:
       crate_release_id: ${{ steps.set_output.outputs.crate_release_id }}
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - id: create_release
       name: Draft Release
-      uses: release-drafter/release-drafter@v6
+      uses: release-drafter/release-drafter@v7
       with:
         config-name: release-drafter.yml
       env:
@@ -86,7 +86,7 @@ jobs:
       crate_release_id: ${{ steps.set_output.outputs.crate_release_id }}
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - id: set_output
       name: Set Release Version
       run: echo "crate_release_name=pr-build-${{ github.event.number }}" >> $GITHUB_OUTPUT && echo "crate_release_id=pr-build-${{ github.event.number }}" >> $GITHUB_OUTPUT
@@ -149,7 +149,7 @@ jobs:
           target: aarch64-linux-android
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - name: Setup Protobuf Compiler
       if: ${{ matrix.cross == 'false' }}
       uses: arduino/setup-protoc@v3
@@ -244,7 +244,7 @@ jobs:
           target: aarch64-linux-android
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - name: Setup Protobuf Compiler
       if: ${{ matrix.cross == 'false' }}
       uses: arduino/setup-protoc@v3
